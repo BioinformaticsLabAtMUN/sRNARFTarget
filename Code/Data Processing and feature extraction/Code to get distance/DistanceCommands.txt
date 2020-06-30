@@ -1,0 +1,35 @@
+
+#get sequences in fasta format
+awk '{print ">" $1 "\n" $2}' sRNAsequences.txt > sRNAsequences.fa
+awk '{print ">" $1 "\n" $2}' mRNAsequences.txt > mRNAsequences.fa
+
+#Extract secondary structures
+centroid_fold sRNAsequences.fa > sRNASecondaryStructure.txt
+centroid_fold mRNAsequences.fa > mRNASecondaryStructure.txt
+
+#Extract only structures from above step(exclude sequences and gene names)
+awk 'NR % 3 == 0' sRNASecondaryStructure_info.txt > sRNASecondaryStructure.txt
+awk 'NR % 3 == 0' mRNASecondaryStructure_info.txt > mRNASecondaryStructure.txt
+
+#Merge secondary structures of sRNA and mRNA in a single file
+paste -d "\n" sRNASecondaryStructure.txt mRNASecondaryStructure.txt > combined_structures.fas
+
+#Get distances from structures
+RNAdistance -D F < combined_structures.fas > combined_structure_distance_info_D_F.txt
+RNAdistance -D H < combined_structures.fas > combined_structure_distance_info_D_H.txt
+RNAdistance -D W < combined_structures.fas > combined_structure_distance_info_D_W.txt
+RNAdistance -D C < combined_structures.fas > combined_structure_distance_info_D_C.txt
+RNAdistance -D h < combined_structures.fas > combined_structure_distance_info_D_lh.txt
+RNAdistance -D w < combined_structures.fas > combined_structure_distance_info_D_lw.txt
+RNAdistance -D c < combined_structures.fas > combined_structure_distance_info_D_lc.txt
+
+#Remove first columns and get only column containing distance values
+awk '{gsub("F: ", "");print}' < combined_structure_distance_info_D_F.txt > structure_distance_F.txt
+awk '{gsub("H: ", "");print}' < combined_structure_distance_info_D_H.txt > structure_distance_H.txt
+awk '{gsub("W: ", "");print}' < combined_structure_distance_info_D_W.txt > structure_distance_W.txt
+awk '{gsub("C: ", "");print}' < combined_structure_distance_info_D_C.txt > structure_distance_C.txt
+awk '{gsub("h: ", "");print}' < combined_structure_distance_info_D_lh.txt > structure_distance_lh.txt
+awk '{gsub("w: ", "");print}' < combined_structure_distance_info_D_lw.txt > structure_distance_lw.txt
+awk '{gsub("c: ", "");print}' < combined_structure_distance_info_D_lc.txt > structure_distance_lc.txt
+
+

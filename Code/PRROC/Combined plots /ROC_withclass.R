@@ -50,7 +50,8 @@ roc3 <- roc.curve(scores.class0 = xcc, weights.class0 = labcc, curve = TRUE, ran
 
 
 # plot PR curve in red, without legend
-plot( roc1, color = 2, auc.main=TRUE, rand.plot = TRUE);
+#plot( roc1, color = 2, auc.main=TRUE, rand.plot = TRUE);
+plot( roc1, color = 2, auc.main="FALSE",main = expression(italic("Escherichia coli") "- ROC"),rand.plot = TRUE );
 # add second PR curve in green
 plot( roc2, color = 3, add = TRUE);
 # add third plot 

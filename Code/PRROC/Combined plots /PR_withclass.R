@@ -50,7 +50,9 @@ pr2 <- pr.curve(scores.class0 = xc, weights.class0 = labc, curve = TRUE, rand.co
 pr3 <- pr.curve(scores.class0 = xcc, weights.class0 = labcc, curve = TRUE, rand.compute = T);
 
 # plot PR curve in red, without legend 2 for red 3 for green
-plot( pr1, color = 2, auc.main="FALSE",main = "Ecoli",rand.plot = TRUE );
+#plot( pr1, color = 2, auc.main="FALSE",main = "Ecoli",rand.plot = TRUE );
+plot( pr1, color = 2, auc.main="FALSE",main = expression(italic("Escherichia coli")),rand.plot = TRUE );
+
 # add second PR curve in green
 plot( pr2, color = 3, add = TRUE );
 

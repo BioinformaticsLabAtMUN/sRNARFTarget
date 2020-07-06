@@ -1,0 +1,9 @@
+
+Install SHAP:
+
+pip install git+https://github.com/slundberg/shap.git
+
+
+Install pyCeterisParibus:
+
+pip install git+https://github.com/ModelOriented/pyCeterisParibus

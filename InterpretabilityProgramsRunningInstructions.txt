@@ -1,0 +1,47 @@
+Program: sRNATarget_SHAP.py
+
+Command to run:
+python sRNARFTarget_SHAP.py 'sRNA_id mRNA_id 
+
+Example usage:
+python sRNARFTarget_SHAP.py 'omrA' 'ompT' 
+
+First parameter:  Python script name, sRNARFTarget_SHAP.py
+
+Second parameter: sRNA id same as in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'omrA'
+
+Third parameter: mRNA id same as in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'ompT'
+
+Note : 
+1) Second and Third parameter are ids of sRNA-mRNA pair from Prediction_probabilities.csv file under sRNARFTargetResult directory.
+
+2) This program can be run for one sRNA-mRNA pair at a time.
+___________________________________________________________________________________________________
+
+Program: sRNATarget_CP.py
+
+Command to run:
+python sRNARFTarget_CP.py sRNA_id mRNA_id feature_name
+
+Example usage:
+python sRNARFTarget_CP.py 'omrA' 'ompT' 'GCG'
+
+First parameter:  Python script name, sRNARFTarget_CP.py
+
+Second parameter: sRNA id same as in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'omrA'
+
+Third parameter: mRNA id same as in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'ompT'
+
+Fourth parameter: Feature/variable name. For example : 'GCG' or 'TAA' and so on.
+
+Note : 
+1) Second and Third parameter are ids of sRNA-mRNA pair from Prediction_probabilities.csv file under sRNARFTargetResult directory.
+
+2) This program can be run for one sRNA-mRNA pair and a single feature/variable at a time.
+__________________________________________________________________________________________________
+
+
+Additional notes: 
+
+First run sRNATarget_SHAP.py for an sRNA-mRNA pair of interest selected from Prediction_probabilities.csv file under sRNARFTargetResult directory. Then based on the results of this program, run the sRNATarget_CP.py for the same sRNA-mRNA pair and for a single feature of interest for this pair.
+

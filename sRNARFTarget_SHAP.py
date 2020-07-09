@@ -15,18 +15,13 @@ if((len(sys.argv) - 1) == 2 ):
 	from sklearn.ensemble import RandomForestClassifier
 
 	# Load model and read data
-	RFModel = pickle.load(open('./pickledRFNoDist.pickle', 'rb'))
+	RFModel = pickle.load(open('./sRNARFTargetModel/sRNARFTargetModel.pickle', 'rb'))
 
 	data = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
 
 	datarow = data[(data['sRNA'] == sys.argv[1]) & (data['mRNA'] == sys.argv[2])]
 
 	data_for_prediction = datarow.iloc[:, 2:]
-
-	#(data_for_prediction.iloc[0])[1] = 0.01765
-	#(data_for_prediction.iloc[0])[10] = 0.0097
-	#(data_for_prediction.iloc[0])[33] = 0
-	#(data_for_prediction.iloc[0])[58] = -0.0045
 
 	data_for_prediction_array = data_for_prediction.values.reshape(1, -1)
 	predicted_proba = RFModel.predict_proba(data_for_prediction)

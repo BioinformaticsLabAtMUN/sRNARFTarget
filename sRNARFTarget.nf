@@ -7,7 +7,7 @@ params.m = "mrna.fasta"
 srna = file("${params.s}")
 mrna = file("${params.m}")
 
-ldedmodel = Channel.fromPath('./pickledRFNoDist.pickle')
+ldedmodel = Channel.fromPath('./sRNARFTargetModel/sRNARFTargetModel.pickle)
 if(!srna.exists()) {
 exit 1, "The specified input sRNA fasta file does not exist: ${params.s}"
 }

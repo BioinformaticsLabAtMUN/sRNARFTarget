@@ -19,14 +19,14 @@ if((len(sys.argv) - 1) == 3 ):
 	from ceteris_paribus.profiles import CeterisParibus
 	from ceteris_paribus.plots.plots import plot, plot_notebook
 
-	RFModel = pickle.load(open('./pickledRFNoDist.pickle', 'rb'))
+	RFModel = pickle.load(open('./sRNARFTargetModel/sRNARFTargetModel.pickle', 'rb'))
 
 	featureData = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
 	datarow = featureData[(featureData['sRNA'] == sys.argv[1]) & (featureData['mRNA'] == sys.argv[2])]
 	data_for_prediction = datarow.iloc[:, 2:]
 
-	trainX = pickle.load(open('./trainX_sRNARFTarget.pkl', 'rb'))
-	trainY = pickle.load(open('./trainY_sRNARFTarget.pkl', 'rb'))
+	trainX = pickle.load(open('./Data/PickledTrainingData/trainX_sRNARFTarget.pkl', 'rb'))
+	trainY = pickle.load(open('./Data/PickledTrainingData/trainY_sRNARFTarget.pkl', 'rb'))
 
 	data = np.array(trainX)
 	yt = np.array(trainY)

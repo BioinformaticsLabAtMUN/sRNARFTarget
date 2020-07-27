@@ -11,7 +11,8 @@
     3. Set 'sRNARFTarget-master' as the current working directory.
     4. Run the below command to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the desired fasta file of sRNAs and mRNA present in the sRNARFTarget-master directory.
    
-   #### nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta
+   ## Command to run sRNARFTarget
+    nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta
    
   ## Creation of all possible sRNA-mRNA pairs
   

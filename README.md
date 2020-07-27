@@ -11,7 +11,7 @@
     <li>Set 'sRNARFTarget-master' as current working directory.</li>
     <li>Run the below command to run sRNARFTarget.</li>
       <ul>
-      <li>**nextflow run sRNARFTarget.nf --s srna.fasta --m mrna.fasta**</li>
+      <li> ### nextflow run sRNARFTarget.nf --s srna.fasta --m mrna.fasta </li>
       <li>Replace srna.fasta with the fasta file of sRNAs and mrna.fasta with the fasta file of mRNAs.</li>
       </ul>
    </ol>

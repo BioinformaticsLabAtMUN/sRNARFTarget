@@ -1,7 +1,7 @@
 Program: sRNATarget_SHAP.py
 
 Command to run:
-python sRNARFTarget_SHAP.py 'sRNA_id mRNA_id 
+python sRNARFTarget_SHAP.py sRNA_id mRNA_id 
 
 Example usage:
 python sRNARFTarget_SHAP.py 'omrA' 'ompT' 

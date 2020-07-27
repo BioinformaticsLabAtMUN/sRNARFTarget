@@ -22,7 +22,7 @@ if((len(sys.argv) - 1) == 3 ):
 	RFModel = pickle.load(open('./PickledModelData/RFModel/sRNARFTargetModel.pickle', 'rb'))
 
 	featureData = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
-	datarow = featureData[(featureData['sRNA'] == sys.argv[1]) & (featureData['mRNA'] == sys.argv[2])]
+	datarow = featureData[(featureData['sRNA_ID'] == sys.argv[1]) & (featureData['mRNA_ID'] == sys.argv[2])]
 	data_for_prediction = datarow.iloc[:, 2:]
 
 	trainX = pickle.load(open('./PickledModelData/RFData/trainX_sRNARFTarget.pkl', 'rb'))

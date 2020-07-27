@@ -12,6 +12,6 @@
     <li>Run the below command to run sRNARFTarget. Replace srna.fasta with the fasta file of sRNAs and mrna.fasta with the fasta file of mRNAs.</li>
    </ol>
    
-  ### nextflow run sRNARFTarget.nf --s srna.fasta --m mrna.fasta
+   #### nextflow run sRNARFTarget.nf --s srna.fasta --m mrna.fasta
 
     

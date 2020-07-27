@@ -16,7 +16,7 @@ if((len(sys.argv) - 1) == 2 ):
 
 	data = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
 
-	datarow = data[(data['sRNA'] == sys.argv[1]) & (data['mRNA'] == sys.argv[2])]
+	datarow = data[(data['sRNA_ID'] == sys.argv[1]) & (data['mRNA_ID'] == sys.argv[2])]
 
 	data_for_prediction = datarow.iloc[:, 2:]
 

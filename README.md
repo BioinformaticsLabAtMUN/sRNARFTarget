@@ -64,10 +64,10 @@
          
    #### 4. Parameters
    
-         1. 1st, 2nd and 3rd parameters are common for both programs.
-         2. 1st parameter is the python script name, sRNARFTarget_SHAP.py
-         3. 2nd and 3rd parameters are sRNA and mRNA IDs the same as it appears in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'omrA' and 'ompT'
-         4. 4th parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example 'GCG'
+      1. 1st, 2nd and 3rd parameters are common for both programs.
+      2. 1st parameter is the python script name, sRNARFTarget_SHAP.py
+      3. 2nd and 3rd parameters are sRNA and mRNA IDs the same as it appears in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'omrA' and 'ompT'
+      4. 4th parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example 'GCG'
       
    ## Notes
     1. sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.

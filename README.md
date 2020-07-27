@@ -68,4 +68,4 @@
          4. 4th parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example : 'GCG'
       
    #### 5. Notes
-         sRNARFTarget_SHAP and sRNARFTarget_CP programs can be run only for one sRNA-mRNA pair at a time.
+    sRNARFTarget_SHAP and sRNARFTarget_CP programs can be run only for one sRNA-mRNA pair at a time.

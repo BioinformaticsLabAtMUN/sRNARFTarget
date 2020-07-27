@@ -26,4 +26,4 @@
     3. FeatureFile.csv: this file contains features for all the sRNA-mRNA pairs. This file consists of 66 columns. The first two columns are sRNA_ID and mRNA_ID.
        The remaining 64 columns are corresponding trinucleotide frequency difference of sRNA-mRNA pairs. This file is later used by sRNARFTarget interpretability scripts.
 
-  ## sRNARFTarget Predictions Interpretability
+  ## sRNARFTarget Predictions Interpretation

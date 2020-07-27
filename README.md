@@ -39,4 +39,14 @@
       
          python sRNARFTarget_SHAP.py sRNA_ID mRNA_ID
          
-         **python sRNARFTarget_SHAP.py sRNA_ID mRNA_ID**
+      3. Example usage:
+         python sRNARFTarget_SHAP.py 'omrA' 'ompT'
+         
+      4. Parameters
+         1. First parameter is python script name, sRNARFTarget_SHAP.py
+         2. Second parameter is sRNA id same as in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'omrA'
+         3. Third parameter is mRNA id same as in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'ompT'
+      
+      5. Note : 
+         1. Second and Third parameter are ids of sRNA-mRNA pair from Prediction_probabilities.csv file under sRNARFTargetResult directory.
+         2. This program can be run for one sRNA-mRNA pair at a time.        

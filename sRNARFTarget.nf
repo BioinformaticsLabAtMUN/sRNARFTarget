@@ -45,6 +45,7 @@ ns.close()
 """
 }
 process1result.into{setResult1; setResult11; setResult111}
+
 //-------------------------Process_2---------------------------//
 
 process getsRNATrinucleotidesFrequncies{
@@ -106,7 +107,8 @@ df3.to_csv('sRNA_3mer.txt', header=True, index=False, sep='\t', mode='a')
 
 //Collect file
 process2result.set{setResult2}
-//-------------------------Process_2---------------------------//
+
+//-------------------------Process_3---------------------------//
 process getmRNATrinucleotidesFrequncies{
 
 input:
@@ -177,7 +179,7 @@ output8.to_csv('3merdifference.txt', header=True, index=False, sep='\t', mode='a
 //Collect file
 process3result.into{setResult3; setResult33}
 
-//-------------------------Process_3---------------------------//
+//-------------------------Process_4---------------------------//
 
 process runRandomForestModel{
 
@@ -249,6 +251,8 @@ dfp63.to_csv('FeatureFile.csv', header = True, sep='\t', index=False)
 
 """
 }
+
+//-------------------------summary---------------------------//
 
 workflow.onComplete {
 println(

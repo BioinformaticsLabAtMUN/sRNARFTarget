@@ -3,7 +3,6 @@
   ## Introduction
 
     This repository contains all the codes, data, results and supplementary files related to the 'sRNARFTarget' program for sRNA target prediction.
-    sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
   
   ## Instructions to run sRNARFTarget
   
@@ -67,5 +66,6 @@
          should be in single quotes. For example: 'omrA' and 'ompT'
          4. 4th parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example : 'GCG'
       
-   #### 5. Notes
-    sRNARFTarget_SHAP and sRNARFTarget_CP programs can be run only for one sRNA-mRNA pair at a time.
+   ## Notes
+    1. sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
+    2. sRNARFTarget_SHAP and sRNARFTarget_CP programs can be run only for one sRNA-mRNA pair at a time.

@@ -2,5 +2,4 @@
   
   ## 1. Introduction
 
-    This repository contains all the codes, data, results and supplementary files related to 
-    'sRNARFTarget' program for sRNA target prediction.
+    This repository contains all the codes, data, results and supplementary files related to 'sRNARFTarget' program for sRNA target prediction.

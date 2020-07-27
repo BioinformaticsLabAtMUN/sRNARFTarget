@@ -24,12 +24,7 @@ if((len(sys.argv) - 1) == 2 ):
 	predicted_proba = RFModel.predict_proba(data_for_prediction)
 	RFprediction = RFModel.predict(data_for_prediction_array)
 	predict_proba = RFModel.predict_proba(data_for_prediction_array)
-	#print(data_for_prediction)
 
-	print("Random forest Predicted", RFprediction)
-	print("Predict_proba", np.round_(predict_proba, decimals=2))
-	
-	print(predict_proba)
 	import warnings
 	warnings.filterwarnings("ignore")
 	# Create SHAP explainer

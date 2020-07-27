@@ -19,24 +19,22 @@ if((len(sys.argv) - 1) == 3 ):
 	from ceteris_paribus.profiles import CeterisParibus
 	from ceteris_paribus.plots.plots import plot, plot_notebook
 
-	RFModel = pickle.load(open('./sRNARFTargetModel/sRNARFTargetModel.pickle', 'rb'))
+	RFModel = pickle.load(open('./PickledModelData/RFModel/sRNARFTargetModel.pickle', 'rb'))
 
 	featureData = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
 	datarow = featureData[(featureData['sRNA'] == sys.argv[1]) & (featureData['mRNA'] == sys.argv[2])]
 	data_for_prediction = datarow.iloc[:, 2:]
 
-	trainX = pickle.load(open('./Data/PickledTrainingData/trainX_sRNARFTarget.pkl', 'rb'))
-	trainY = pickle.load(open('./Data/PickledTrainingData/trainY_sRNARFTarget.pkl', 'rb'))
+	trainX = pickle.load(open('./PickledModelData/RFData/trainX_sRNARFTarget.pkl', 'rb'))
+	trainY = pickle.load(open('./PickledModelData/RFData/trainY_sRNARFTarget.pkl', 'rb'))
 
 	data = np.array(trainX)
 	yt = np.array(trainY)
 	labels = yt.ravel()
 	variable_names = data_for_prediction.columns
 
-
 	predict_function = lambda X: RFModel.predict_proba(X)[::, 1]
 	explainer_rf = explain(RFModel, variable_names, data, y = labels, predict_function=predict_function, label = "sRNARFTarget")
-
 
 	#cp_profile = individual_variable_profile(explainer_rf, data_for_prediction, y = 1, grid_points = 100)
 	cp_profile = individual_variable_profile(explainer_rf, data_for_prediction, grid_points = 200, variables = [sys.argv[3]])

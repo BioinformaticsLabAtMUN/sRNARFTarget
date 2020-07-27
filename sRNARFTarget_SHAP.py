@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 
-
 #!pip install git+https://github.com/slundberg/shap.git
 
 import sys
 if((len(sys.argv) - 1) == 2 ):
-
-
 	import shap
 	import pickle
 	import numpy as np
@@ -15,7 +12,7 @@ if((len(sys.argv) - 1) == 2 ):
 	from sklearn.ensemble import RandomForestClassifier
 
 	# Load model and read data
-	RFModel = pickle.load(open('./sRNARFTargetModel/sRNARFTargetModel.pickle', 'rb'))
+	RFModel = pickle.load(open('./PickledModelData/RFModel/sRNARFTargetModel.pickle', 'rb'))
 
 	data = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
 

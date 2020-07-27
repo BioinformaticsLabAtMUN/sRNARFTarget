@@ -37,4 +37,6 @@
       1. Choose an sRNA-mRNA pair of interest from Prediction probabilities.csv file under sRNARFTargetResult folder.
       2. Run sRNARFTarget_SHAP using below command
       
-         <b>python sRNARFTarget_SHAP.py sRNA_id mRNA_id</b>
+         python sRNARFTarget_SHAP.py sRNA_ID mRNA_ID
+         
+         **python sRNARFTarget_SHAP.py sRNA_ID mRNA_ID**

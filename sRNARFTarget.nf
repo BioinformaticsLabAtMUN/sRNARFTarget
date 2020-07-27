@@ -34,7 +34,7 @@ from Bio import SeqIO
 
 ns = open('pairs_names_seqs.txt', 'w')
 
-ns.write("sRNA" + "\t"+ "mRNA"+ "\t" + "sRNA_Sequence" + "\t" + "mRNA_Sequence")
+ns.write("sRNA_ID" + "\t"+ "mRNA_ID"+ "\t" + "sRNA_Sequence" + "\t" + "mRNA_Sequence")
 ns.write('\\n')
 
 for record1 in SeqIO.parse("$srna", "fasta"):
@@ -44,7 +44,7 @@ for record1 in SeqIO.parse("$srna", "fasta"):
 ns.close()
 """
 }
-process1result.collectFile(name: file("pairs_names_seqs.txt")).into{setResult1; setResult11; setResult111}
+process1result.into{setResult1; setResult11; setResult111}
 //-------------------------Process_2---------------------------//
 
 process getsRNATrinucleotidesFrequncies{
@@ -237,7 +237,7 @@ import pandas as pd
 #Generate sorted prediction result file
 df1 = pd.read_csv('$ns3file', sep='\t', header=0)
 df2 = pd.read_csv('$mlfile', sep='\t', header=None)
-df3 = pd.DataFrame(data=df1.iloc[:, 0:2].values,columns=['sRNA', 'mRNA']).assign(Prediction_Probability=df2.round(5))
+df3 = pd.DataFrame(data=df1.iloc[:, 0:2].values,columns=['sRNA_ID', 'mRNA_ID']).assign(Prediction_Probability=df2.round(5))
 
 df4 = df3.sort_values('Prediction_Probability',ascending=False)
 df4.to_csv('Prediction_probabilities.csv', sep='\t', index=False)
@@ -249,8 +249,6 @@ dfp63.to_csv('FeatureFile.csv', header = True, sep='\t', index=False)
 
 """
 }
-
-
 
 workflow.onComplete {
 println(

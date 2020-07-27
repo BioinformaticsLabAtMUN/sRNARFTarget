@@ -3,6 +3,7 @@
   ## Introduction
 
     This repository contains all the codes, data, results and supplementary files related to the 'sRNARFTarget' program for sRNA target prediction.
+    sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
   
   ## Instructions to run sRNARFTarget
   

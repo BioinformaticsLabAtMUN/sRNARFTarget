@@ -13,7 +13,7 @@
     1. Clone the repository.
     2. Keep the sRNA and mRNA fasta files of interest in the sRNARFTarget-master folder.
     3. Set 'sRNARFTarget-master' as the current working directory.
-    4. Run the below command to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the desired fasta files of sRNAs and mRNA present in the sRNARFTarget-master directory.
+    4. Run the below command to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the desired fasta files of sRNAs and mRNA kept in the sRNARFTarget-master directory.
    
   ## Command to run sRNARFTarget
     nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta

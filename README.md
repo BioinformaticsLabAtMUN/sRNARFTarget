@@ -71,4 +71,5 @@
       
    ## Notes
     1. sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
-    2. sRNARFTarget_SHAP and sRNARFTarget_CP programs can be run only for one sRNA-mRNA pair at a time.
+    2. sRNARFTarget_SHAP program can be run only for one sRNA-mRNA pair at a time.
+    3. sRNARFTarget_CP can be executed only for single sRNA-mRNA pair and a single feature/variable at a time.

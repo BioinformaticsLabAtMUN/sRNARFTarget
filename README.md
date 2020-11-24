@@ -6,7 +6,14 @@
     
   ## Requirements
 
-    Please check the Requirements.txt file for the requirements to run the programs.
+Requirements for sRNARFTarget:
+  1. Python3
+  2. [Nextflow](https://www.nextflow.io/)
+  3. Python modules: pickle, Bio, pprint, [skbio](http://scikit-bio.org/), itertools, [sklearn](https://scikit-learn.org/stable/), pandas, numpy.
+        
+Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
+  1. Python3
+  2. Python modules: shap, pyCeterisParibus, pickle, pandas, numpy, [sklearn](https://scikit-learn.org/stable/), matplotlib
              
   ## Instructions to run sRNARFTarget
   

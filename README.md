@@ -2,7 +2,7 @@
   
   ## Introduction
 
-This repository contains all the codes, data, results and supplementary files related to the 'sRNARFTarget' program for sRNA target prediction.
+This repository contains all the code, data, results and supplementary files related to the 'sRNARFTarget' program for sRNA target prediction.
     
   ## Requirements
 
@@ -20,14 +20,13 @@ Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
   1. Clone the repository.
   2. Create the fasta files with the sRNA and mRNA DNA sequences in the sRNARFTarget-master folder.
   3. Set 'sRNARFTarget-master' as the current working directory.
-  4. Run the below command to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding fasta files of sRNAs and mRNA in the sRNARFTarget-master directory.
+  4. Type the command below to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences. Both files should be located in the sRNARFTarget-master directory.
    
-  ## Command to run sRNARFTarget
     nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta
    
   ## Creation of all possible sRNA-mRNA pairs
   
- sRNARFTarget creates all possible pairs from the input sRNA and mRNA sequences. Each sRNA is paired with all mRNAs. For example, if the input sRNA file has 5 sRNA sequences and mRNA file has 9 mRNA sequences, then it will create 45 sRNA-mRNA pairs, 9 pairs for each sRNA.
+sRNARFTarget creates all possible pairs from the input sRNA and mRNA sequences. Each sRNA is paired with all mRNAs. For example, if the input sRNA file has 5 sRNA sequences and mRNA file has 9 mRNA sequences, then it will create 45 sRNA-mRNA pairs, 9 pairs per sRNA.
  
   ## sRNARFTarget Results
     

@@ -80,3 +80,9 @@ Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
     1. sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
     2. sRNARFTarget_SHAP program can be run only for one sRNA-mRNA pair at a time.
     3. sRNARFTarget_CP can be executed only for single sRNA-mRNA pair and a single feature/variable at a time.
+
+   ## Citation
+   If you use this software please cite:
+   
+sRNARFTarget: A fast machine-learning-based approach for transcriptome-wide sRNA Target Prediction. Kratika Naskulwar and Lourdes Peña-Castillo. bioRxiv 2021.03.05.433963; doi: https://doi.org/10.1101/2021.03.05.433963 
+

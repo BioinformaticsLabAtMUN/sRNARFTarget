@@ -57,7 +57,8 @@ sRNARFTarget creates all possible pairs from the input sRNA and mRNA sequences. 
       
           python sRNARFTarget_SHAP.py sRNA_ID mRNA_ID
          
-   Example usage: python sRNARFTarget_SHAP.py 'omrA' 'ompT'        
+   Example usage: python sRNARFTarget_SHAP.py 'omrA' 'ompT'
+   Note that you need to verify that shap was installed in your default python version. In MacOS, for example, you might need to execute as  python3 sRNARFTarget_SHAP.py.
   
    #### 3. Instructions to run sRNARFTarget_CP
    

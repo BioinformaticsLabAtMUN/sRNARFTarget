@@ -72,15 +72,15 @@ sRNARFTarget creates all possible pairs from the input sRNA and mRNA sequences. 
          
    #### 4. Parameters
    
-   1. 1st, 2nd and 3rd parameters are common for both programs.
-   2. 1st parameter is the python script name, sRNARFTarget_SHAP.py
-   3. 2nd and 3rd parameters are sRNA and mRNA IDs the same as it appears in Prediction_probabilities.csv file under sRNARFTargetResult directory and should be in single quotes. For example: 'omrA' and 'ompT'
-   4. 4th parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example 'GCG'
+   1.  sRNA_ID as it appears in Prediction_probabilities.csv file under sRNARFTargetResult director in single quotes. For example: 'omrA'
+   2.  mRNA_ID as it appears in Prediction_probabilities.csv file under sRNARFTargetResult directory in single quotes. For example: 'ompT'
+   4.  feature_name parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example 'GCG'
       
    ## Notes
 1. sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
 2. sRNARFTarget_SHAP program can be run only for one sRNA-mRNA pair at a time.
 3. sRNARFTarget_CP can be executed only for single sRNA-mRNA pair and a single feature/variable at a time.
+4. Make sure the folder sRNARFTargetResult is in your working directory when executing sRNARFTarget_CP.py and sRNARFTarget_SHAP.py. That folder should contain the files Prediction_probabilities.csv and FeatureFile.csv.
 
    ## Citation
    If you use this software please cite:

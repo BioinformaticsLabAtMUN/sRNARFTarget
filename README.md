@@ -17,7 +17,7 @@ Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
              
   ## Instructions to run sRNARFTarget
   
-  1. Clone the repository.
+  1. Clone the repository. For instructions about how to clone GitHub repositories see [this](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
   2. Create the fasta files with the sRNA and mRNA DNA sequences in the sRNARFTarget-master folder.
   3. Set 'sRNARFTarget-master' as the current working directory.
   4. Type the command below to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences. Both files should be located in the sRNARFTarget-master directory.

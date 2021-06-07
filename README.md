@@ -9,7 +9,7 @@ This repository contains all the code, data, results and supplementary files rel
 Requirements for running sRNARFTarget:
   1. Python3
   2. [Nextflow](https://www.nextflow.io/)
-  3. Python modules: [pickle](https://docs.python.org/3/library/pickle.html), [Bio](https://biopython.org/), [pprint](https://docs.python.org/3/library/pprint.html), [skbio](http://scikit-bio.org/), [itertools](https://docs.python.org/3/library/itertools.html), [sklearn](https://scikit-learn.org/stable/), [pandas](https://pandas.pydata.org/), [numpy](https://numpy.org/).
+  3. Python modules: [pickle](https://docs.python.org/3/library/pickle.html), [biopython](https://biopython.org/), [pprint](https://docs.python.org/3/library/pprint.html), [scikit-bio](http://scikit-bio.org/), [itertools](https://docs.python.org/3/library/itertools.html), [scikit-learn](https://scikit-learn.org/stable/), [pandas](https://pandas.pydata.org/), [numpy](https://numpy.org/).
         
 Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
   1. Python3

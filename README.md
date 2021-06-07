@@ -13,7 +13,7 @@ Requirements for running sRNARFTarget:
         
 Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
   1. Python3
-  2. Python modules: shap, pyCeterisParibus, pickle, pandas, numpy, sklearn, matplotlib
+  2. Python modules: [shap](https://github.com/slundberg/shap), pyCeterisParibus, pickle, pandas, numpy, sklearn, matplotlib
              
   ## Instructions to run sRNARFTarget
   

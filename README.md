@@ -7,20 +7,21 @@ This repository contains all the code, data, results and supplementary files rel
   ## Requirements
 
 Requirements for running sRNARFTarget:
-  1. Python3
-  2. [Nextflow](https://www.nextflow.io/)
-  3. Python modules: [pickle](https://docs.python.org/3/library/pickle.html), [biopython](https://biopython.org/), [pprint](https://docs.python.org/3/library/pprint.html), [scikit-bio](http://scikit-bio.org/), [itertools](https://docs.python.org/3/library/itertools.html), [scikit-learn](https://scikit-learn.org/stable/), [pandas](https://pandas.pydata.org/), [numpy](https://numpy.org/).
+  1. Python3 (tested on 3.8.10)
+  2. [Nextflow v21.04.1](https://www.nextflow.io/)
+  3. Python modules: [pickle](https://docs.python.org/3/library/pickle.html), [biopython v1.79](https://biopython.org/), [pprint](https://docs.python.org/3/library/pprint.html), [scikit-bio v0.5.6](http://scikit-bio.org/), [itertools](https://docs.python.org/3/library/itertools.html), [scikit-learn v0.24.1](https://scikit-learn.org/stable/), [pandas v1.2.1](https://pandas.pydata.org/), [numpy v1.19.5](https://numpy.org/).
         
-Requirements for sRNARFTarget_SHAP and sRNARFTarget_CP
-  1. Python3
-  2. Python modules: [shap](https://github.com/slundberg/shap), pyCeterisParibus, pickle, pandas, numpy, sklearn, matplotlib
+The following modules are additionally required for running sRNARFTarget_SHAP and sRNARFTarget_CP
+  1. [shap v0.39](https://pypi.org/project/shap/), [pyCeterisParibus v0.5.2](https://github.com/ModelOriented/pyCeterisParibus) and matplotlib v3.3.4
+  
+These modules can be installed using pip.
              
   ## Instructions to run sRNARFTarget
   
   1. Clone the repository. For instructions about how to clone GitHub repositories see [this](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository).
-  2. Create the fasta files with the sRNA and mRNA DNA sequences in the sRNARFTarget-master folder.
-  3. Set 'sRNARFTarget-master' as the current working directory.
-  4. Type the command below to run sRNARFTarget. Replace sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences. Both files should be located in the sRNARFTarget-master directory.
+  2. Create the fasta files with the sRNA and mRNA DNA sequences in the folder containing the sRNARFTarget.nf script (referred from now on as sRNARFTarget folder/directory).
+  3. Go to the sRNARFTarget folder so that it is the current working directory.
+  4. Type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
    
     nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta
    
@@ -30,38 +31,56 @@ sRNARFTarget creates all possible pairs from the input sRNA and mRNA sequences. 
  
   ## sRNARFTarget Results
     
-  1. When the program has finished execution, it creates a directory 'sRNARFTargetResult' with two files.
-  2. Prediction_probabilities.csv: this is the main result file and contains results sorted by predicted interaction probability from high to low, rounded to five decimals. It contains three columns, sRNA_ID, mRNA_ID and Prediction_Probability.
-  3. FeatureFile.csv: this file contains features for all the sRNA-mRNA pairs. This file consists of 66 columns. The first two columns are sRNA_ID and mRNA_ID. The remaining 64 columns are corresponding trinucleotide frequency difference of sRNA-mRNA pairs. This file is later used by sRNARFTarget interpretability scripts.
+  1. On your terminarl, you should see something like this after sRNARFTarget's execution:
+  ```
+  N E X T F L O W  ~  version 21.04.1
+Launching `sRNARFTarget.nf` [gloomy_easley] - revision: 273666007b
+executor >  local (5)
+[d0/aab5ef] process > createAllPossiblePairs              [100%] 1 of 1 ✔
+[08/c1a4ba] process > getsRNATrinucleotidesFrequncies (1) [100%] 1 of 1 ✔
+[c8/e2134c] process > getmRNATrinucleotidesFrequncies (1) [100%] 1 of 1 ✔
+[eb/0b3d90] process > runRandomForestModel (1)            [100%] 1 of 1 ✔
+[c8/b7f154] process > generateSortedResultFile (1)        [100%] 1 of 1 ✔
+
+Pipeline execution summary
+---------------------------
+Run as : nextflow run sRNARFTarget.nf --s Multocida_sRNA_gcvb.fasta --m Multocida_mRNA.fasta
+Completed at: 2021-06-07T14:28:19.852-02:30
+Duration : 40.7s
+Success : true
+workDir : /Users/lourdespena/Documents/Memorial/sRNARFTarget/work
+exit status : 0
+```
+  2. sRNARFTarget are saved in the folder 'sRNARFTargetResult' which is created in the working directory. These folder will contain two files: Prediction_probabilities.csv and FeatureFile.csv.
+  * Prediction_probabilities.csv: this is the main result file and contains results sorted by predicted interaction probability from high to low, rounded to five decimals. It contains three columns, sRNA_ID, mRNA_ID and Prediction_Probability. Here are some llines of a Prediction_probabilities.csv file generated:
+  ```
+sRNA_ID mRNA_ID Prediction_Probability
+gcvb    PM0494(+)       0.57444
+gcvb    PM_RS03970(-)   0.55257
+gcvb    PM_RS00560(-)   0.55193
+gcvb    PM_RS06810(-)   0.54968
+gcvb    PM_RS02870(+)   0.54926
+gcvb    PM_RS00565(-)   0.54756
+  ```
+  * FeatureFile.csv: this file contains features for all the sRNA-mRNA pairs. This file consists of 66 columns. The first two columns are sRNA_ID and mRNA_ID. The remaining 64 columns are corresponding trinucleotide frequency difference of sRNA-mRNA pairs. This file is later used by sRNARFTarget interpretability scripts.
 
   ## Interpretation of sRNARFTarget Predictions 
   
-  1. We created two python scripts for understanding the predictions generated by sRNARFTarget; sRNARFTarget_SHAP.py and sRNARFTarget_CP.py
-  2. These are run after sRNARFTarget predictions are generated.
-  3. We used SHAP and pyCeterisParibus python packages to implement these programs.
+  1. We created two python scripts for understanding the predictions generated by sRNARFTarget: sRNARFTarget_SHAP.py and sRNARFTarget_CP.py
+  2. You need to run sRNARFTarget first so that the Prediction_probabilities.csv and FeatureFile.csv files are generated.
+     
+   #### Instructions to run sRNARFTarget_SHAP
    
-   #### 1. Instructions to install SHAP and pyCeterisParibus python packages 
-   
-   1. Install SHAP:
-   
-          pip install git+https://github.com/slundberg/shap.git
-    
-   2. Install pyCeterisParibus:
-   
-          pip install git+https://github.com/ModelOriented/pyCeterisParibus
-          
-   #### 2. Instructions to run sRNARFTarget_SHAP
-   
-   1. Choose an sRNA-mRNA pair of interest from Prediction probabilities.csv file under sRNARFTargetResult folder.
+   1. Choose an sRNA-mRNA pair of interest from Prediction probabilities.csv file.
    2. Run sRNARFTarget_SHAP using the below command.
       
           python sRNARFTarget_SHAP.py sRNA_ID mRNA_ID
          
    Example usage: python sRNARFTarget_SHAP.py 'omrA' 'ompT'
-   
-   Note that you need to verify that shap was installed in your default python version. In MacOS, for example, you might need to execute as  python3 sRNARFTarget_SHAP.py.
-  
-   #### 3. Instructions to run sRNARFTarget_CP
+   Make sure to use single quotations around the IDs and write the IDs exactly as they appear in the Prediction probabilities.csv.
+   3. sRNARFTarget_SHAP will create a decisionPlot.pdf file and ForcePlot.html file
+     
+   #### Instructions to run sRNARFTarget_CP
    
    1. For the same sRNA-mRNA pair that was chosen to run sRNARFTarget_SHAP, choose a feature/variable by looking at the plots generated by sRNARFTarget_SHAP or any one variable of interest.
   2. Run sRNARFTarget_CP using the below command.
@@ -69,18 +88,15 @@ sRNARFTarget creates all possible pairs from the input sRNA and mRNA sequences. 
          python sRNARFTarget_CP.py sRNA_ID mRNA_ID feature_name
          
   Example usage: python sRNARFTarget_CP.py 'omrA' 'ompT' 'GCG'
-         
-   #### 4. Parameters
-   
-   1.  sRNA_ID as it appears in Prediction_probabilities.csv file under sRNARFTargetResult director in single quotes. For example: 'omrA'
-   2.  mRNA_ID as it appears in Prediction_probabilities.csv file under sRNARFTargetResult directory in single quotes. For example: 'ompT'
-   4.  feature_name parameter in sRNARFTarget_CP command is feature/variable name and should be in single quotes. For example 'GCG'
+  Make sure to use single quotations around each parameter, and write the sRNA and mRNA ID exactly as they appear in the Prediction probabilities.csv file.
+  3. sRNARFTarget_CP.py will create a directory called \_plots_files and will open the file plots0.html automatically in the default web browser. This file contains an interactive plot showing the predicted interaction probability as a function of the value of the feature provided.
       
    ## Notes
 1. sRNARFTarget can be run for any number of sRNAs and mRNAs at a time.
 2. sRNARFTarget_SHAP program can be run only for one sRNA-mRNA pair at a time.
 3. sRNARFTarget_CP can be executed only for single sRNA-mRNA pair and a single feature/variable at a time.
 4. Make sure the folder sRNARFTargetResult is in your working directory when executing sRNARFTarget_CP.py and sRNARFTarget_SHAP.py. That folder should contain the files Prediction_probabilities.csv and FeatureFile.csv generated by sRNARFTarget.nf.
+5. Note that you need to verify that all modules were installed in your default python version. In MacOS, for example, you might need to execute as python3 sRNARFTarget_SHAP.py.
 
    ## Citation
    If you use this software please cite:

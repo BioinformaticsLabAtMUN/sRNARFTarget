@@ -19,7 +19,7 @@ These modules can be installed using pip.
   ## Instructions to run sRNARFTarget
   
   1. Clone the repository. For instructions about how to clone GitHub repositories see [this](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository).
-  2. Create the fasta files with the sRNA and mRNA DNA sequences in the folder containing the sRNARFTarget.nf script (referred from now on as sRNARFTarget folder/directory).
+  2. Create the fasta files with the sRNA and mRNA nucleotide (i.e, A,C,G,T) sequences in the folder containing the sRNARFTarget.nf script (referred from now on as sRNARFTarget folder/directory).
   3. Go to the sRNARFTarget folder so that it is the current working directory.
   4. Type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
    

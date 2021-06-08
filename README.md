@@ -1,8 +1,8 @@
-# sRNARFTarget: A machine learning-based approach for sRNA Target Prediction #
+# sRNARFTarget: A machine learning-based approach for fast sRNA Target Prediction #
   
   ## Introduction
 
-This repository contains all the code, data, results and supplementary files related to the 'sRNARFTarget' program for sRNA target prediction.
+This repository contains all the code, data, results and supplementary files related to the 'sRNARFTarget' program for bacterial sRNA target prediction.
     
   ## Requirements
 

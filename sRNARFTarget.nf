@@ -222,14 +222,15 @@ process5result.set{setResult5}
 //-------------------------Process_5---------------------------//
 
 process generateSortedResultFile{
-publishDir 'sRNARFTargetResult'
+
 input:
 file mlfile from setResult5
 file ns3file from setResult111
 file difffile from setResult33
 
 output:
-file '*.csv' into process6result
+file 'Prediction_probabilities.csv' into process6result1
+file 'FeatureFile.csv' into process6result2
 
 script:
 """
@@ -251,6 +252,10 @@ dfp63.to_csv('FeatureFile.csv', header = True, sep='\t', index=False)
 
 """
 }
+
+process6result1.collectFile(name: 'Prediction_probabilities.csv', storeDir:'sRNARFTargetResult')
+process6result2.collectFile(name: 'FeatureFile.csv', storeDir:'sRNARFTargetResult')
+
 
 //-------------------------summary---------------------------//
 

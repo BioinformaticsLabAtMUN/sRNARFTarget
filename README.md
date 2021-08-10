@@ -2,17 +2,17 @@
   
   ## Introduction
 
-This repository contains all the code, data, results and supplementary files related to the 'sRNARFTarget' program for bacterial sRNA target prediction.
+This repository contains the nextflow pipeline sRNARFTarget to obtain transcriptome-wide bacterial sRNA target predictions, and all the code, data, results and supplementary files related to the sRNARFTarget's manuscript. In the text below, we provide instructions to run the sRNARFTarget nextflow pipeline.
     
   ## Requirements
   
-**Requirements for running sRNARFTarget with our Python 3.8 docker container (recommended):
+**Requirements for running sRNARFTarget with our Python 3.8 docker container:
 1. [Nextflow v21.04.1](https://www.nextflow.io/)
 2. [Docker](https://docs.docker.com/)
 
 **Requirements for running sRNARFTarget with Python installed locally:
-  1. Python3 (tested on 3.8.10)
-  2. [Nextflow v21.04.1](https://www.nextflow.io/)
+  1. [Nextflow v21.04.1](https://www.nextflow.io/)
+  2. Python3 (tested on 3.8.10)
   3. Python modules: [pickle](https://docs.python.org/3/library/pickle.html), [biopython v1.79](https://biopython.org/), [pprint](https://docs.python.org/3/library/pprint.html), [scikit-bio v0.5.6](http://scikit-bio.org/), [itertools](https://docs.python.org/3/library/itertools.html), [scikit-learn v0.24.1](https://scikit-learn.org/stable/), [pandas v1.2.1](https://pandas.pydata.org/), [numpy v1.19.5](https://numpy.org/).
         
 The following modules are additionally required for running sRNARFTarget_SHAP and sRNARFTarget_CP
@@ -25,11 +25,11 @@ These modules can be installed using pip.
   1. Clone the repository. For instructions about how to clone GitHub repositories see [this](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository).
   2. Create the fasta files with the sRNA and mRNA nucleotide (i.e, A,C,G,T) sequences in the folder containing the sRNARFTarget.nf script (referred from now on as sRNARFTarget folder/directory).
   3. Go to the sRNARFTarget folder so that it is the current working directory.
-  4. OPTION A (with our [Python 3.8 docker container](https://hub.docker.com/r/penacastillolab/python38env)). After pulling the docker container, type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
+  4. OPTION A (with our [Python 3.8 docker container](https://hub.docker.com/r/penacastillolab/python38env), recommended). After pulling the docker container, type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
    ```
     nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta -with-docker penacastillolab/python38env
    ```
-   4. OPTION B (Python installed locally). Type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
+   4. OPTION B (with Python installed locally). Type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
    ```
     nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta
    ```
@@ -60,8 +60,8 @@ Success : true
 workDir : Afolder/sRNARFTarget/work
 exit status : 0
 ```
-  2. sRNARFTarget are saved in the folder 'sRNARFTargetResult' which is created in the working directory. These folder will contain two files: Prediction\_probabilities.csv and FeatureFile.csv.
-  * Prediction_probabilities.csv: this is the main result file and contains results sorted by predicted interaction probability from high to low, rounded to five decimals. It contains three columns, sRNA_ID, mRNA_ID and Prediction\_Probability. Here are some llines of a Prediction\_probabilities.csv file generated:
+  2. sRNARFTarget's output files are saved in the folder 'sRNARFTargetResult' which is created in the working directory. This folder will contain two files: Prediction\_probabilities.csv and FeatureFile.csv.
+  * Prediction_probabilities.csv: this is the main result file and contains results sorted by predicted interaction probability from high to low, rounded to five decimals. It contains three columns, sRNA_ID, mRNA_ID and Prediction\_Probability. Here are some lines of a Prediction\_probabilities.csv file generated:
   ```
 sRNA_ID mRNA_ID Prediction_Probability
 gcvb    PM0494(+)       0.57444

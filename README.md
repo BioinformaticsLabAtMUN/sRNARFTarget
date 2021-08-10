@@ -5,8 +5,12 @@
 This repository contains all the code, data, results and supplementary files related to the 'sRNARFTarget' program for bacterial sRNA target prediction.
     
   ## Requirements
+  
+**Requirements for running sRNARFTarget with our Python 3.8 docker container (recommended):
+1. [Nextflow v21.04.1](https://www.nextflow.io/)
+2. [Docker](https://docs.docker.com/)
 
-Requirements for running sRNARFTarget:
+**Requirements for running sRNARFTarget with Python installed locally:
   1. Python3 (tested on 3.8.10)
   2. [Nextflow v21.04.1](https://www.nextflow.io/)
   3. Python modules: [pickle](https://docs.python.org/3/library/pickle.html), [biopython v1.79](https://biopython.org/), [pprint](https://docs.python.org/3/library/pprint.html), [scikit-bio v0.5.6](http://scikit-bio.org/), [itertools](https://docs.python.org/3/library/itertools.html), [scikit-learn v0.24.1](https://scikit-learn.org/stable/), [pandas v1.2.1](https://pandas.pydata.org/), [numpy v1.19.5](https://numpy.org/).
@@ -15,15 +19,20 @@ The following modules are additionally required for running sRNARFTarget_SHAP an
   1. [shap v0.39](https://pypi.org/project/shap/), [pyCeterisParibus v0.5.2](https://github.com/ModelOriented/pyCeterisParibus) and matplotlib v3.3.4
   
 These modules can be installed using pip.
-             
+
   ## Instructions to run sRNARFTarget
   
   1. Clone the repository. For instructions about how to clone GitHub repositories see [this](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository).
   2. Create the fasta files with the sRNA and mRNA nucleotide (i.e, A,C,G,T) sequences in the folder containing the sRNARFTarget.nf script (referred from now on as sRNARFTarget folder/directory).
   3. Go to the sRNARFTarget folder so that it is the current working directory.
-  4. Type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
-   
+  4. OPTION A (with our [Python 3.8 docker container](https://hub.docker.com/r/penacastillolab/python38env)). After pulling the docker container, type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
+   ```
+    nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta -with-docker penacastillolab/python38env
+   ```
+   4. OPTION B (Python installed locally). Type the command below to run sRNARFTarget replacing sRNA.fasta (--s parameter) and mRNA.fasta (--m parameter) with the corresponding filenames of the fasta files containing the sRNAs and mRNAs sequences, respectively. Both files should be located in the sRNARFTarget directory.
+   ```
     nextflow run sRNARFTarget.nf --s sRNA.fasta --m mRNA.fasta
+   ```
    
   ## Creation of all possible sRNA-mRNA pairs
   

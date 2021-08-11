@@ -3,7 +3,7 @@
 #!pip install git+https://github.com/slundberg/shap.git
 
 import sys
-if((len(sys.argv) - 1) == 2 ):
+if((len(sys.argv) - 1) == 3 ):
         import shap
         import pickle
         import numpy as np
@@ -13,13 +13,13 @@ if((len(sys.argv) - 1) == 2 ):
         
         # Load model and read data
         RFModel = pickle.load(open('./PickledModelData/RFModel/sRNARFTargetModel.pickle', 'rb'))
+                
+        data =pd.read_csv(sys.argv[1]+"FeatureFile.csv", sep='\t')
         
-        data = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
-        
-        datarow = data[(data['sRNA_ID'] == sys.argv[1]) & (data['mRNA_ID'] == sys.argv[2])]
+        datarow = data[(data['sRNA_ID'] == sys.argv[2]) & (data['mRNA_ID'] == sys.argv[3])]
 
         if (datarow.shape[0] == 0):
-            print("No predictions found with", sys.argv[1], " and ", sys.argv[2])
+            print("No predictions found with", sys.argv[2], " and ", sys.argv[3])
             quit()
         
         data_for_prediction = datarow.iloc[:, 2:]
@@ -50,8 +50,8 @@ if((len(sys.argv) - 1) == 2 ):
     
     
 elif((len(sys.argv) - 1) < 2):
-    print("Error: Required parameters not passed! Please pass two parameters, sRNA ID and mRNA ID.")
+    print("Error: Required parameters not passed! Please pass three parameters, the path to FeatureFile.csv, sRNA ID and mRNA ID.")
         
         
 else:
-    print("Error: Only two parameters can be passed. sRNA ID and mRNA ID.")
+    print("Error: Only three parameters can be passed: the path to FeatureFile.csv, sRNA ID and mRNA ID.")

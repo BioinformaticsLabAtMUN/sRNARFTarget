@@ -7,7 +7,7 @@
 	# S0 if total number of variables are 29 and grid_points was passed with a value of 100, 
 	#it will calculate 2900 profiles (100 for each variable). Plots will show how prediction changes as a value of particular variable changes.
 import sys
-if((len(sys.argv) - 1) == 3 ):
+if((len(sys.argv) - 1) == 4 ):
 	import shap
 	import pickle
 	import numpy as np
@@ -21,8 +21,9 @@ if((len(sys.argv) - 1) == 3 ):
 
 	RFModel = pickle.load(open('./PickledModelData/RFModel/sRNARFTargetModel.pickle', 'rb'))
 
-	featureData = pd.read_csv("./sRNARFTargetResult/FeatureFile.csv", sep='\t')
-	datarow = featureData[(featureData['sRNA_ID'] == sys.argv[1]) & (featureData['mRNA_ID'] == sys.argv[2])]
+	featureData = pd.read_csv(sys.argv[1]+"FeatureFile.csv", sep='\t')
+    
+	datarow = featureData[(featureData['sRNA_ID'] == sys.argv[2]) & (featureData['mRNA_ID'] == sys.argv[3])]
 	data_for_prediction = datarow.iloc[:, 2:]
 
 	trainX = pickle.load(open('./PickledModelData/RFData/trainX_sRNARFTarget.pkl', 'rb'))
@@ -37,16 +38,16 @@ if((len(sys.argv) - 1) == 3 ):
 	explainer_rf = explain(RFModel, variable_names, data, y = labels, predict_function=predict_function, label = "sRNARFTarget")
 
 	#cp_profile = individual_variable_profile(explainer_rf, data_for_prediction, y = 1, grid_points = 100)
-	cp_profile = individual_variable_profile(explainer_rf, data_for_prediction, grid_points = 200, variables = [sys.argv[3]])
-	plot(cp_profile, show_profiles=True, show_residuals = True, show_rugs=True, height=700, width=750, yaxis_title='Prediction probablity for class 1', plot_title = 'Ceteris paribus profiles of feature '+ sys.argv[3] +' for '+ sys.argv[1] +'-'+ sys.argv[2] + ' pair interaction',  
+	cp_profile = individual_variable_profile(explainer_rf, data_for_prediction, grid_points = 200, variables = [sys.argv[4]])
+	plot(cp_profile, show_profiles=True, show_residuals = True, show_rugs=True, height=700, width=750, yaxis_title='Prediction probablity for class 1', plot_title = 'Ceteris paribus profiles of feature '+ sys.argv[4] +' for '+ sys.argv[2] +'-'+ sys.argv[3] + ' pair interaction',
 		color='blue', size=3, alpha=0.5,  color_residuals='red', size_residuals=20, alpha_residuals=20, print_observations = True)
 
 
-elif((len(sys.argv) - 1) < 3):
+elif((len(sys.argv) - 1) < 4):
 
-	print("Error: Required parameters not passed! Please pass all three parameters, sRNA ID, mRNA ID, variable name.")
+	print("Error: Required parameters not passed! Please pass all four parameters: the path to FeatureFile.csv, sRNA ID, mRNA ID, variable name.")
 
 
 else:
 
-	print("Error: Only three parameter can be passed, sRNA ID, mRNA ID, variable name.")
+	print("Error: Only four parameter can be passed: the path to FeatureFile.csv, sRNA ID, mRNA ID, variable name.")

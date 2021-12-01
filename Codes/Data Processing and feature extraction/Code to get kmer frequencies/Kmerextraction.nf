@@ -196,5 +196,5 @@ process getKmerdifference{
 
 //Collect file
 process11result
-.collectFile(name: file("TrinucleotidesDifferenceNegative.csv"))
+.collectFile(name: file("TrinucleotidesDifference.csv"))
 .set{setResult11}

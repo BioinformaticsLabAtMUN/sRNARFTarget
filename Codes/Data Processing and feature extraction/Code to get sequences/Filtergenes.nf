@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-
+#!/usr/bin/env edirect
 //-------------------------channel---------------------------//
 
 FileChannel = Channel.fromPath( './Data.txt').into{channel1; channel2; channel3}
@@ -16,7 +16,7 @@ script:
 """
 cat ${p1f1} | cut -f1,2 | while IFS=\$'\t' read f1 f2
 do
-	esearch -db gene -query "\$f1[ACCN] AND \$f2[GENE]" < /dev/null| xtract -pattern ENTREZ_DIRECT -element Count 
+	esearch -db gene -query "\$f1[ACCN] AND \$f3[GENE]" < /dev/null| xtract -pattern ENTREZ_DIRECT -element Count 
 done > sRNAcount.txt
 
 """
@@ -39,7 +39,7 @@ script:
 cat ${p2f1} | cut -f1,3 | while IFS=\$'\t' read f1 f3
 do
 
-	esearch -db gene -query "\$f1[ACCN] AND \$f3[GENE]" < /dev/null| xtract -pattern ENTREZ_DIRECT -element Count 
+	esearch -db gene -query "\$f1[ACCN] AND \$f4[GENE]" < /dev/null| xtract -pattern ENTREZ_DIRECT -element Count 
 done > mRNAcount.txt
 
 """
@@ -62,16 +62,16 @@ file '*.txt' into p3result mode flatten
 
 script:
 """
-paste ${p3f1} ${p3f2} ${p3f3}| awk '{print \$1,\$2,\$3,\$4,\$5}' > process3op1.txt
+paste ${p3f1} ${p3f2} ${p3f3}| awk '{print \$1,\$2,\$3}' > process3op1.txt
 
-awk '(\$4 != 0) && (\$5 != 0 )' process3op1.txt > sRNAmRNAwithcount1.txt
+awk '(\$2 != 0) && (\$3 != 0 )' process3op1.txt > sRNAmRNAwithcount1.txt
 
 tr ' ' '\t' < sRNAmRNAwithcount1.txt | cut -f1-3 > foundsRNAsmRNAs.txt
 
-awk '(\$4 == 0) || (\$5 == 0 )' process3op1.txt > sRNAmRNAwithcount0.txt
+awk '(\$2 == 0) || (\$3 == 0 )' process3op1.txt > sRNAmRNAwithcount0.txt
 
 tr ' ' '\t' < sRNAmRNAwithcount0.txt | cut -f1-3 > notfoundsRNAsmRNA.txt
 """
 }
 
-p3result.collectFile(name: file("foundsRNAsmRNAs.txt")
+p3result.collectFile(name: file("foundsRNAsmRNAs.txt"))

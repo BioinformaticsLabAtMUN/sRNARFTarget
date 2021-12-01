@@ -1,15 +1,14 @@
 #!/usr/bin/env nextflow
-
+#!/usr/bin/env edirect
 //-------------------------channels----------------------------//
-
 myFileChannel = Channel.fromPath('./foundsRNAsmRNAs.txt')
 myFileChannel.into{channelv1; channelv2; channelv3}
 
 channel2 = Channel.fromPath( './genseq.sh')
 
-channel3 = Channel.fromPath( './DirgenomeSequences/*.fasta' ).collectFile(name:'result1.fasta')
+channel3 = Channel.fromPath( './DirgenomeSequences/*.fasta' )
 
-channel4 = Channel.fromPath( './DirgenomeSequences/*.fasta' ).collectFile(name:'result2.fasta')
+channel4 = Channel.fromPath( './DirgenomeSequences/*.fasta' )
 
 //-------------------------Process_1---------------------------//
 process getAccessions{
@@ -42,14 +41,16 @@ process getGenomeSequence{
 
   script:
   """
-  #!/bin/bash
-  cat $p2f1 | uniq > p2f3.txt
+  
+  #cat $p2f1 | uniq > p2f3.txt
+  awk '{print \$1}' $p2f1 | uniq > accession1.txt
+  awk '{ if(\$1 != "Accession") print \$0;}' accession1.txt | sort | uniq > p2f3.txt
   n=1
-  while read line; 
+  cat p2f3.txt | while read line; 
   do
-    Bash $p2f2 \$line > \$line.fasta
+    source ./$p2f2 
   n=\$((n+1))
-  done < p2f3.txt
+  done 
   """  
 }
 

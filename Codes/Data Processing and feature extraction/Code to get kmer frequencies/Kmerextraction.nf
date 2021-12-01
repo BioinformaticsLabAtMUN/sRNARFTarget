@@ -91,7 +91,7 @@ from itertools import product
 import pandas as pd
 import numpy as np
 
-data1 = pd.read_csv('$File10', sep='\t')
+data1 = pd.read_csv('$File10', sep='\t', encoding = 'unicode_escape')
 df = pd.DataFrame(data = data1)
 
 name = df.iloc[:, :-1].values #All columns but last
@@ -176,7 +176,7 @@ process getKmerdifference{
     file mkmerfile from setResult99
 
   output:
-    file 'kmerdifference.csv' into process11result
+    file 'kmerdifference.txt' into process11result
 
   script:
   """
@@ -187,7 +187,7 @@ process getKmerdifference{
   mRNA = pd.read_csv('$mkmerfile', sep='\t')
   sRNA
   mRNA
-  #mRNA - sRNA
+  #output8 = mRNA - sRNA
   output8 = mRNA.subtract(sRNA)
   output8.to_csv('kmerdifference.txt', header=False, index=False, sep='\t', mode='a')
   """
@@ -196,5 +196,5 @@ process getKmerdifference{
 
 //Collect file
 process11result
-.collectFile(name: file("TrinucleotidesDifference.csv"))
+.collectFile(name: file("TrinucleotidesDifferenceNegative.csv"))
 .set{setResult11}

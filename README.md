@@ -128,5 +128,5 @@ gcvb    PM_RS00565(-)   0.54756
    ## Citation
    If you use this software please cite:
    
-sRNARFTarget: A fast machine-learning-based approach for transcriptome-wide sRNA Target Prediction. Kratika Naskulwar and Lourdes Peña-Castillo. bioRxiv 2021.03.05.433963; doi: https://doi.org/10.1101/2021.03.05.433963 
+Kratika Naskulwar & Lourdes Peña-Castillo (2022) sRNARFTarget: a fast machine-learning-based approach for transcriptome-wide sRNA target prediction, RNA Biology, 19:1, 44-54, [DOI: 10.1080/15476286.2021.2012058](https://doi.org/10.1080/15476286.2021.2012058)
 
